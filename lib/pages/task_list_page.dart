@@ -9,14 +9,16 @@ class TaskListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('All Tasks')),
+      appBar: AppBar(
+        title: const Text("My Tasks"),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black87,
+        elevation: 0,
+      ),
       body: Consumer<TaskProvider>(
         builder: (context, provider, child) {
-          if (provider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
           if (provider.tasks.isEmpty) {
-            return const Center(child: Text("No tasks yet. Create one!"));
+            return const Center(child: Text("No tasks found."));
           }
 
           return ListView.builder(
@@ -59,10 +61,10 @@ class TaskListPage extends StatelessWidget {
                       task.title,
                       style: TextStyle(
                         decoration: isDone ? TextDecoration.lineThrough : null,
-                        fontWeight:
-                            isUrgent ? FontWeight.bold : FontWeight.normal,
-                        color:
-                            isUrgent ? Colors.red.shade900 : Colors.black87,
+                        fontWeight: isUrgent
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: isUrgent ? Colors.red.shade900 : Colors.black87,
                         fontSize: 16,
                       ),
                     ),
@@ -101,7 +103,9 @@ class TaskListPage extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: isUrgent ? Colors.orange : Colors.grey,
-                                  fontWeight: isUrgent ? FontWeight.bold : FontWeight.normal,
+                                  fontWeight: isUrgent
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
                                 ),
                               ),
                             ],
@@ -109,31 +113,47 @@ class TaskListPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
-                      onPressed: () {
-                        // Show confirmation dialog before deleting
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text("Delete Task"),
-                            content: const Text("Are you sure you want to delete this task?"),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text("Cancel"),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  provider.deleteTask(task);
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Delete", style: TextStyle(color: Colors.red)),
-                              ),
-                            ],
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.play_arrow,
+                          color: isUrgent ? Colors.red : Colors.green,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.delete_outline,
+                            color: Colors.redAccent,
                           ),
-                        );
-                      },
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: const Text("Delete Task"),
+                                content: const Text(
+                                  "Are you sure you want to delete this task?",
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("Cancel"),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      provider.deleteTask(task);
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text(
+                                      "Delete",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
                 ),

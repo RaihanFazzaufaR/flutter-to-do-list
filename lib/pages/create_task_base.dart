@@ -73,7 +73,10 @@ class _CreateTaskBasePageState extends State<CreateTaskBasePage> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: widget.primaryColor, width: 2),
+                      borderSide: BorderSide(
+                        color: widget.primaryColor,
+                        width: 2,
+                      ),
                     ),
                     filled: true,
                     fillColor: Colors.grey.shade50,
@@ -92,13 +95,19 @@ class _CreateTaskBasePageState extends State<CreateTaskBasePage> {
                   decoration: InputDecoration(
                     labelText: 'Description (Optional)',
                     hintText: 'Add more details...',
-                    prefixIcon: Icon(Icons.description, color: widget.primaryColor),
+                    prefixIcon: Icon(
+                      Icons.description,
+                      color: widget.primaryColor,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: widget.primaryColor, width: 2),
+                      borderSide: BorderSide(
+                        color: widget.primaryColor,
+                        width: 2,
+                      ),
                     ),
                     filled: true,
                     fillColor: Colors.grey.shade50,
@@ -107,7 +116,7 @@ class _CreateTaskBasePageState extends State<CreateTaskBasePage> {
                   // Validator removed to make this field completely optional
                 ),
                 const SizedBox(height: 24),
-                
+
                 // Interactive Date Picker Box
                 InkWell(
                   onTap: () async {
@@ -133,7 +142,10 @@ class _CreateTaskBasePageState extends State<CreateTaskBasePage> {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 16,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade400),
                       borderRadius: BorderRadius.circular(12),
@@ -170,7 +182,7 @@ class _CreateTaskBasePageState extends State<CreateTaskBasePage> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                
+
                 // Interactive Save Button
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
@@ -188,7 +200,7 @@ class _CreateTaskBasePageState extends State<CreateTaskBasePage> {
                     'Save Task',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                )
+                ),
               ],
             ),
           ),
