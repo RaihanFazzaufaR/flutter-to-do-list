@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../services/user_repository.dart';
+import '../repositories/user_repository.dart';
 import '../models/user_model.dart';
 import '../utils/app_constants.dart';
 

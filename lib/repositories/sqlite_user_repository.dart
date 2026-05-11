@@ -1,6 +1,6 @@
 import '../models/user_model.dart';
 import 'user_repository.dart';
-import 'db_helper.dart';
+import '../services/db_helper.dart';
 import '../utils/app_constants.dart';
 import 'package:bcrypt/bcrypt.dart';
 

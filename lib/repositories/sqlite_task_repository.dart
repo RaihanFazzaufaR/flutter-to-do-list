@@ -1,6 +1,6 @@
 import '../models/task_model.dart';
 import 'task_repository.dart';
-import 'db_helper.dart';
+import '../services/db_helper.dart';
 import '../utils/app_constants.dart';
 
 class SqliteTaskRepository implements TaskRepository {

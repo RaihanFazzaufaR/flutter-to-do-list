@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'pages/auth_gate.dart';
+import 'screens/auth_gate.dart';
 import 'providers/task_provider.dart';
 import 'providers/auth_provider.dart';
-import 'services/sqlite_task_repository.dart';
-import 'services/sqlite_user_repository.dart';
-import 'services/user_repository.dart';
-import 'services/task_repository.dart';
+import 'repositories/sqlite_task_repository.dart';
+import 'repositories/sqlite_user_repository.dart';
+import 'repositories/user_repository.dart';
+import 'repositories/task_repository.dart';
 import 'services/db_helper.dart';
 
 void main() {
