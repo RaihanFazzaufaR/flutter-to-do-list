@@ -36,8 +36,8 @@ class TaskListPage extends StatelessWidget {
                     horizontal: 16,
                     vertical: 6,
                   ),
-                  color: isUrgent ? Colors.amber.shade50 : Colors.white,
-                  elevation: isUrgent ? 2 : 1,
+                  color: Colors.white,
+                  elevation: 1,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                     side: isUrgent
