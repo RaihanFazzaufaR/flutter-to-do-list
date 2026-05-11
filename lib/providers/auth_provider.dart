@@ -10,6 +10,7 @@ class AuthProvider extends ChangeNotifier {
   bool _isLoading = true;
   bool _isLoggedIn = false;
   User? _currentUser;
+  String? _errorMessage;
 
   AuthProvider(this._userRepository) {
     checkLoginState();
@@ -20,6 +21,7 @@ class AuthProvider extends ChangeNotifier {
   User? get currentUser => _currentUser;
   int? get userId => _currentUser?.id;
   String? get username => _currentUser?.username;
+  String? get errorMessage => _errorMessage;
 
   Future<void> checkLoginState() async {
     _isLoading = true;
@@ -48,6 +50,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> login(String username, String password) async {
     _isLoading = true;
+    _errorMessage = null; // Reset error message
     notifyListeners();
 
     try {
@@ -62,9 +65,12 @@ class AuthProvider extends ChangeNotifier {
         _isLoading = false;
         notifyListeners();
         return true;
+      } else {
+        _errorMessage = "Username or Password is incorrect";
       }
     } catch (e) {
       debugPrint("Login Error: $e");
+      _errorMessage = "System error. Please try again.";
     }
 
     _isLoading = false;

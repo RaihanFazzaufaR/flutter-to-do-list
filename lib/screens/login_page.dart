@@ -24,9 +24,10 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if (!loginSuccess && mounted) {
+      final error = context.read<AuthProvider>().errorMessage;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Username or password is incorrect"),
+        SnackBar(
+          content: Text(error ?? "Username or Password is incorrect"),
           backgroundColor: Colors.redAccent,
         ),
       );
