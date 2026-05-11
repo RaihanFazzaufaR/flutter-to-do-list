@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 // Title Text
                 const Text(
-                  "Good Tasker",
+                  "DueDash",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 32,

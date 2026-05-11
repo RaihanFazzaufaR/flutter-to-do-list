@@ -123,7 +123,6 @@ class _OptionsPageState extends State<OptionsPage> {
                 ),
                 filled: true,
                 fillColor: Colors.grey.shade50,
-                helperText: "Minimum 8 characters",
               ),
               obscureText: true,
               validator: (v) {

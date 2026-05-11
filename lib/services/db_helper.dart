@@ -16,7 +16,8 @@ class DBHelper {
 
     // Delete the database file every time the app starts to refresh dummy data
     // and apply any schema changes automatically during development.
-    await deleteDatabase(path);
+    
+    // await deleteDatabase(path);
 
     return await openDatabase(
       path,
