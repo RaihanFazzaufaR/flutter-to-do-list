@@ -9,16 +9,14 @@ class TaskListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("My Tasks"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text('All Tasks')),
       body: Consumer<TaskProvider>(
         builder: (context, provider, child) {
+          if (provider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
           if (provider.tasks.isEmpty) {
-            return const Center(child: Text("No tasks found."));
+            return const Center(child: Text("No tasks yet. Create one!"));
           }
 
           return ListView.builder(
@@ -61,10 +59,10 @@ class TaskListPage extends StatelessWidget {
                       task.title,
                       style: TextStyle(
                         decoration: isDone ? TextDecoration.lineThrough : null,
-                        fontWeight: isUrgent
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        color: isUrgent ? Colors.red.shade900 : Colors.black87,
+                        fontWeight:
+                            isUrgent ? FontWeight.bold : FontWeight.normal,
+                        color:
+                            isUrgent ? Colors.red.shade900 : Colors.black87,
                         fontSize: 16,
                       ),
                     ),
@@ -103,9 +101,7 @@ class TaskListPage extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: isUrgent ? Colors.orange : Colors.grey,
-                                  fontWeight: isUrgent
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
+                                  fontWeight: isUrgent ? FontWeight.bold : FontWeight.normal,
                                 ),
                               ),
                             ],
@@ -119,20 +115,19 @@ class TaskListPage extends StatelessWidget {
                         Icon(
                           Icons.play_arrow,
                           color: isUrgent ? Colors.red : Colors.green,
+                          size: 24,
                         ),
                         IconButton(
-                          icon: const Icon(
-                            Icons.delete_outline,
-                            color: Colors.redAccent,
-                          ),
+                          icon: const Icon(Icons.delete_outline,
+                              color: Colors.redAccent),
                           onPressed: () {
+                            // Show confirmation dialog before deleting
                             showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
                                 title: const Text("Delete Task"),
                                 content: const Text(
-                                  "Are you sure you want to delete this task?",
-                                ),
+                                    "Are you sure you want to delete this task?"),
                                 actions: [
                                   TextButton(
                                     onPressed: () => Navigator.pop(context),
@@ -143,10 +138,8 @@ class TaskListPage extends StatelessWidget {
                                       provider.deleteTask(task);
                                       Navigator.pop(context);
                                     },
-                                    child: const Text(
-                                      "Delete",
-                                      style: TextStyle(color: Colors.red),
-                                    ),
+                                    child: const Text("Delete",
+                                        style: TextStyle(color: Colors.red)),
                                   ),
                                 ],
                               ),

@@ -13,6 +13,8 @@ class OptionsPage extends StatefulWidget {
 class _OptionsPageState extends State<OptionsPage> {
   final TextEditingController oldPassController = TextEditingController();
   final TextEditingController newPassController = TextEditingController();
+  final TextEditingController confirmNewPassController =
+      TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   void _handleChangePassword() async {
@@ -104,13 +106,30 @@ class _OptionsPageState extends State<OptionsPage> {
                 helperText: "Minimum 8 characters",
               ),
               obscureText: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a new password';
-                }
-                if (value.length < 8) {
-                  return 'Password must be at least 8 characters long';
-                }
+              validator: (v) {
+                if (v == null || v.isEmpty) return 'Please enter a new password';
+                if (v.length < 8) return 'Password must be at least 8 characters long';
+                return null;
+              },
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: confirmNewPassController,
+              decoration: InputDecoration(
+                labelText: "Confirm New Password",
+                prefixIcon: const Icon(Icons.lock_reset),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                filled: true,
+                fillColor: Colors.grey.shade50,
+                helperText: "Minimum 8 characters",
+              ),
+              obscureText: true,
+              validator: (v) {
+                if (v == null || v.isEmpty) return 'Please enter a new password';
+                if (v.length < 8) return 'Password must be at least 8 characters long';
+                if (v != newPassController.text) return "Mismatch password";
                 return null;
               },
             ),

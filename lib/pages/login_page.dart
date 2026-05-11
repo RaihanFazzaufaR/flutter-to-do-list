@@ -54,7 +54,18 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Logo
-                const Icon(Icons.task_alt, size: 80, color: Colors.blueAccent),
+                Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.transparent, width: 3),
+                    image: const DecorationImage(
+                      image: AssetImage('assets/splash_logo.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 24),
 
                 // Title Text
