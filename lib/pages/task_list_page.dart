@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/task_model.dart';
 import '../providers/task_provider.dart';
+import '../utils/date_formatter.dart';
 
 class TaskListPage extends StatelessWidget {
   const TaskListPage({super.key});
@@ -26,8 +27,7 @@ class TaskListPage extends StatelessWidget {
               final task = provider.tasks[index];
               final isDone = task.status == TaskStatus.done;
               final isUrgent = task.urgency == TaskUrgency.urgent;
-              final dateString =
-                  "${task.date.year}-${task.date.month.toString().padLeft(2, '0')}-${task.date.day.toString().padLeft(2, '0')}";
+              final dateString = DateFormatter.formatCompactDate(task.date);
 
               return Opacity(
                 opacity: isDone ? 0.5 : 1.0,

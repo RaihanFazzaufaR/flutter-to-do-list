@@ -112,8 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (v) {
                       if (v == null || v.isEmpty) return "Required";
-                      if (v.length < 8)
-                        return "Password must be at least 8 characters long";
+                      if (v.length < 8) return "Password must be at least 8 characters long";
                       return null;
                     },
                   ),
@@ -132,7 +131,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (v) {
                       if (v == null || v.isEmpty) return "Required";
-                      if (v.length < 8) return "Password must be at least 8 characters long";
                       if (v != passController.text) return "Mismatch";
                       return null;
                     },

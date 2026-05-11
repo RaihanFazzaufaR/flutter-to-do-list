@@ -1,6 +1,7 @@
 import '../models/task_model.dart';
 import 'task_repository.dart';
 import 'db_helper.dart';
+import '../utils/app_constants.dart';
 
 class SqliteTaskRepository implements TaskRepository {
   final DBHelper _dbHelper;
@@ -11,10 +12,10 @@ class SqliteTaskRepository implements TaskRepository {
   Future<List<Task>> getTasks(int userId) async {
     final db = await _dbHelper.database;
     final List<Map<String, dynamic>> maps = await db.query(
-      'tasks',
-      where: 'user_id = ?',
+      AppConstants.tableTasks,
+      where: '${AppConstants.colTaskUserId} = ?',
       whereArgs: [userId],
-      orderBy: 'due_date ASC',
+      orderBy: '${AppConstants.colTaskDueDate} ASC',
     );
     return maps.map((map) => Task.fromMap(map)).toList();
   }
@@ -22,16 +23,16 @@ class SqliteTaskRepository implements TaskRepository {
   @override
   Future<void> addTask(Task task) async {
     final db = await _dbHelper.database;
-    await db.insert('tasks', task.toMap());
+    await db.insert(AppConstants.tableTasks, task.toMap());
   }
 
   @override
   Future<void> updateTask(Task task) async {
     final db = await _dbHelper.database;
     await db.update(
-      'tasks',
+      AppConstants.tableTasks,
       task.toMap(),
-      where: 'id = ?',
+      where: '${AppConstants.colTaskId} = ?',
       whereArgs: [task.id],
     );
   }
@@ -40,8 +41,8 @@ class SqliteTaskRepository implements TaskRepository {
   Future<void> deleteTask(int id) async {
     final db = await _dbHelper.database;
     await db.delete(
-      'tasks',
-      where: 'id = ?',
+      AppConstants.tableTasks,
+      where: '${AppConstants.colTaskId} = ?',
       whereArgs: [id],
     );
   }

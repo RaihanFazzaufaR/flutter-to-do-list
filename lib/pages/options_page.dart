@@ -127,7 +127,6 @@ class _OptionsPageState extends State<OptionsPage> {
               obscureText: true,
               validator: (v) {
                 if (v == null || v.isEmpty) return 'Please enter a new password';
-                if (v.length < 8) return 'Password must be at least 8 characters long';
                 if (v != newPassController.text) return "Mismatch password";
                 return null;
               },

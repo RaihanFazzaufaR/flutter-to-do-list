@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'database_seeder.dart';
+import '../utils/app_constants.dart';
 
 class DBHelper {
   static Database? _database;
@@ -16,7 +17,7 @@ class DBHelper {
 
     // Delete the database file every time the app starts to refresh dummy data
     // and apply any schema changes automatically during development.
-    
+
     // await deleteDatabase(path);
 
     return await openDatabase(
@@ -30,8 +31,8 @@ class DBHelper {
       },
       onUpgrade: (db, oldVersion, newVersion) async {
         if (oldVersion < 4) {
-          await db.execute("DROP TABLE IF EXISTS tasks");
-          await db.execute("DROP TABLE IF EXISTS users");
+          await db.execute("DROP TABLE IF EXISTS ${AppConstants.tableTasks}");
+          await db.execute("DROP TABLE IF EXISTS ${AppConstants.tableUsers}");
           await _createDB(db, newVersion);
         }
       },
@@ -41,24 +42,24 @@ class DBHelper {
   Future _createDB(Database db, int version) async {
     // 1. Create Table Users
     await db.execute('''
-      CREATE TABLE users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL
+      CREATE TABLE ${AppConstants.tableUsers} (
+        ${AppConstants.colUserId} INTEGER PRIMARY KEY AUTOINCREMENT,
+        ${AppConstants.colUsername} TEXT UNIQUE NOT NULL,
+        ${AppConstants.colPassword} TEXT NOT NULL
       )
     ''');
 
     // 2. Create Table Tasks
     await db.execute('''
-      CREATE TABLE tasks (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
-        title TEXT NOT NULL,
-        description TEXT,
-        due_date TEXT NOT NULL,
-        category TEXT NOT NULL,
-        status INTEGER DEFAULT 0,
-        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+      CREATE TABLE ${AppConstants.tableTasks} (
+        ${AppConstants.colTaskId} INTEGER PRIMARY KEY AUTOINCREMENT,
+        ${AppConstants.colTaskUserId} INTEGER NOT NULL,
+        ${AppConstants.colTaskTitle} TEXT NOT NULL,
+        ${AppConstants.colTaskDescription} TEXT,
+        ${AppConstants.colTaskDueDate} TEXT NOT NULL,
+        ${AppConstants.colTaskCategory} TEXT NOT NULL,
+        ${AppConstants.colTaskStatus} INTEGER DEFAULT 0,
+        FOREIGN KEY (${AppConstants.colTaskUserId}) REFERENCES ${AppConstants.tableUsers} (${AppConstants.colUserId}) ON DELETE CASCADE
       )
     ''');
     print("Database tables created");

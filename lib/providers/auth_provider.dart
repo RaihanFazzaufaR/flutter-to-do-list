@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/user_repository.dart';
 import '../models/user_model.dart';
+import '../utils/app_constants.dart';
 
 class AuthProvider extends ChangeNotifier {
   final UserRepository _userRepository;
@@ -25,7 +26,7 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
 
     final prefs = await SharedPreferences.getInstance();
-    final id = prefs.getInt('user_id');
+    final id = prefs.getInt(AppConstants.keyUserId);
 
     if (id != null) {
       final user = await _userRepository.getUserById(id);
@@ -53,8 +54,7 @@ class AuthProvider extends ChangeNotifier {
 
     if (user != null) {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setInt('user_id', user.id);
-      await prefs.setString('username', user.username);
+      await prefs.setInt(AppConstants.keyUserId, user.id);
 
       _isLoggedIn = true;
       _currentUser = user;
