@@ -50,22 +50,26 @@ class AuthProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    final user = await _userRepository.checkLogin(username, password);
+    try {
+      final user = await _userRepository.checkLogin(username, password);
 
-    if (user != null) {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setInt(AppConstants.keyUserId, user.id);
+      if (user != null) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setInt(AppConstants.keyUserId, user.id);
 
-      _isLoggedIn = true;
-      _currentUser = user;
-      _isLoading = false;
-      notifyListeners();
-      return true;
-    } else {
-      _isLoading = false;
-      notifyListeners();
-      return false;
+        _isLoggedIn = true;
+        _currentUser = user;
+        _isLoading = false;
+        notifyListeners();
+        return true;
+      }
+    } catch (e) {
+      debugPrint("Login Error: $e");
     }
+
+    _isLoading = false;
+    notifyListeners();
+    return false;
   }
 
   Future<void> logout() async {
