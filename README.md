@@ -57,11 +57,11 @@ DueDash, sebuah aplikasi manajemen tugas (To-Do List) modern yang dibangun mengg
 
 ### login
 
-![login](screenshots/login.jpeg)
+<img src="screenshots/login_page.jpeg" width="250">
 
 ### Dashboard
 
-![dashboard](screenshots/dashboard.jpeg)
+<img src="screenshots/dashboard.jpeg" width="250">
 
 ---
 
