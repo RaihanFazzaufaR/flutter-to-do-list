@@ -8,6 +8,7 @@ import 'repositories/sqlite_user_repository.dart';
 import 'repositories/user_repository.dart';
 import 'repositories/task_repository.dart';
 import 'services/db_helper.dart';
+import 'utils/snackbar_util.dart';
 
 void main() {
   // Initialize dependencies
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DueDash',
+      scaffoldMessengerKey: SnackbarUtil.messengerKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

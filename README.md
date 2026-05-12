@@ -1,17 +1,69 @@
-# todolist
+# 📝 DueDash
 
-A new Flutter project.
+DueDash, sebuah aplikasi manajemen tugas (To-Do List) modern yang dibangun menggunakan **Flutter**. Aplikasi ini dirancang untuk membantu pengguna mengelola tugas harian mereka dengan fitur prioritas, statistik mingguan, dan keamanan data.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Fitur Utama
 
-A few resources to get you started if this is your first Flutter project:
+*   **🔐 Autentikasi Pengguna**: Sistem Login dan Register yang aman menggunakan enkripsi **BCrypt**.
+*   **📊 Dashboard Informatif**: Grafik statistik mingguan menggunakan `fl_chart` untuk melacak tugas yang selesai.
+*   **📂 Manajemen Tugas Terbagi**: 
+    *   **Normal Task**: Untuk tugas harian biasa.
+    *   **Urgent Task**: Untuk tugas mendesak dengan penanda khusus.
+*   **📱 UI Modern**: Desain bersih dengan *custom components* dan navigasi yang intuitif.
+*   **💾 Penyimpanan Lokal**: Menggunakan **SQLite** (`sqflite`) agar data tetap tersimpan meskipun aplikasi ditutup.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Tech Stack
+
+*   **Framework**: [Flutter](https://flutter.dev)
+*   **Language**: [Dart](https://dart.dev)
+*   **State Management**: [Provider](https://pub.dev/packages/provider)
+*   **Database**: [SQFlite](https://pub.dev/packages/sqflite)
+*   **UI Components**: Material Design 3
+*   **Others**: `fl_chart`, `shared_preferences`, `bcrypt`.
+
+---
+
+## 🚀 Memulai
+
+### Prasyarat
+*   Flutter SDK terinstal (minimal v3.11.5)
+*   Android Studio / VS Code
+
+### Instalasi
+1.  Clone repository ini:
+    ```bash
+    git clone https://github.com/username/todolist.git
+    ```
+2.  Masuk ke direktori project:
+    ```bash
+    cd todolist
+    ```
+3.  Install dependencies:
+    ```bash
+    flutter pub get
+    ```
+4.  Jalankan aplikasi:
+    ```bash
+    flutter run
+    ```
+
+---
+
+## 📸 Screenshots
+
+### login
+
+![login](screenshots/login.jpeg)
+
+### Dashboard
+
+![dashboard](screenshots/dashboard.jpeg)
+
+---
+
+## 📄 Lisensi
+Didistribusikan di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.

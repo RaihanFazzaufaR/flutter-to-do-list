@@ -12,7 +12,7 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = context.watch<AuthProvider>();
 
-    if (authProvider.isLoading) {
+    if (!authProvider.isInitialized) {
       return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),

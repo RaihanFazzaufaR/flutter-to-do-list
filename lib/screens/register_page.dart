@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../repositories/user_repository.dart';
+import '../utils/snackbar_util.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -25,22 +26,12 @@ class _RegisterPageState extends State<RegisterPage> {
         await userRepository.saveUser(userController.text, passController.text);
 
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Account created successfully! Please login."),
-              backgroundColor: Colors.green,
-            ),
-          );
+          SnackbarUtil.showSuccess("Account created successfully! Please login.");
           Navigator.pop(context); // Go back to Login Page
         }
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text("Error: ${e.toString()}"),
-              backgroundColor: Colors.redAccent,
-            ),
-          );
+          SnackbarUtil.showError("Error: ${e.toString()}");
         }
       } finally {
         if (mounted) setState(() => _isLoading = false);

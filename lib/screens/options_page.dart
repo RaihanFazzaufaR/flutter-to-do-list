@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
+import '../utils/snackbar_util.dart';
 import '../widgets/identity_card.dart';
 
 class OptionsPage extends StatefulWidget {
@@ -27,18 +28,11 @@ class _OptionsPageState extends State<OptionsPage> {
 
       if (mounted) {
         if (error == null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Password changed successfully!"),
-              backgroundColor: Colors.green,
-            ),
-          );
+          SnackbarUtil.showSuccess("Password changed successfully!");
           oldPassController.clear();
           newPassController.clear();
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(error), backgroundColor: Colors.redAccent),
-          );
+          SnackbarUtil.showError(error);
         }
       }
     }
@@ -162,16 +156,8 @@ class _OptionsPageState extends State<OptionsPage> {
               const SizedBox(height: 32),
             ],
             const SizedBox(height: 16),
-            ListTile(
-              leading: const Icon(Icons.logout, color: Colors.redAccent),
-              title: const Text(
-                'Logout',
-                style: TextStyle(
-                  color: Colors.redAccent,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              onTap: () async {
+            ElevatedButton.icon(
+              onPressed: () async {
                 final confirm = await showDialog<bool>(
                   context: context,
                   builder: (context) => AlertDialog(
@@ -198,11 +184,24 @@ class _OptionsPageState extends State<OptionsPage> {
                   Navigator.pop(context);
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: Colors.red.shade100),
+              icon: const Icon(Icons.logout, color: Colors.redAccent),
+              label: const Text(
+                'Logout',
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              tileColor: Colors.red.shade50,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red.shade50,
+                elevation: 0,
+                side: BorderSide(color: Colors.red.shade100),
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                alignment: Alignment.centerLeft,
+              ),
             ),
           ],
         ),

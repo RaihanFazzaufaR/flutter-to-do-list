@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
+import '../utils/snackbar_util.dart';
 import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,12 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (!loginSuccess && mounted) {
       final error = context.read<AuthProvider>().errorMessage;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(error ?? "Username or Password is incorrect"),
-          backgroundColor: Colors.redAccent,
-        ),
-      );
+      SnackbarUtil.showError(error ?? "Username or Password is incorrect");
     }
     // If successful, AuthGate will automatically rebuild and navigate to Dashboard
   }

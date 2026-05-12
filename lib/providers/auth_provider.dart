@@ -8,6 +8,7 @@ class AuthProvider extends ChangeNotifier {
   final UserRepository _userRepository;
   
   bool _isLoading = true;
+  bool _isInitialized = false;
   bool _isLoggedIn = false;
   User? _currentUser;
   String? _errorMessage;
@@ -17,6 +18,7 @@ class AuthProvider extends ChangeNotifier {
   }
 
   bool get isLoading => _isLoading;
+  bool get isInitialized => _isInitialized;
   bool get isLoggedIn => _isLoggedIn;
   User? get currentUser => _currentUser;
   int? get userId => _currentUser?.id;
@@ -45,6 +47,7 @@ class AuthProvider extends ChangeNotifier {
     }
 
     _isLoading = false;
+    _isInitialized = true;
     notifyListeners();
   }
 
