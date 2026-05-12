@@ -63,13 +63,13 @@ DueDash, sebuah aplikasi manajemen tugas (To-Do List) modern yang dibangun mengg
 
 <img src="screenshots/dashboard.jpeg" width="250">
 
-### Add Normal Task'
+### Add Normal Task
 
-<img src="screenshots/add normal task.jpeg" width="250">
+<img src="screenshots/normal task.jpeg" width="250">
 
-### Add Urgent Task'
+### Add Urgent Task
 
-<img src="screenshots/add urgent task.jpeg" width="250">
+<img src="screenshots/urgent task.jpeg" width="250">
 
 ### List Task
 
