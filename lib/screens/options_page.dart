@@ -31,6 +31,7 @@ class _OptionsPageState extends State<OptionsPage> {
           SnackbarUtil.showSuccess("Password changed successfully!");
           oldPassController.clear();
           newPassController.clear();
+          confirmNewPassController.clear();
         } else {
           SnackbarUtil.showError(error);
         }
